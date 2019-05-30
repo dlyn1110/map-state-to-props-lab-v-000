@@ -5,19 +5,20 @@ class Users extends Component {
   render() {
     return (
       <div>
+        Total users: {this.props.userCount}
         <ul>
-          Users!
+          {this.props.users.map(user =>
+            <li>{user.username}</li>
+          )}
         </ul>
       </div>
     )
   }
 }
+
 const mapStateToProps = (state) => {
-  return {
-    users: state.users,
-    userCount: state.users.length
-  }
+  let userCount = state.users.length;
+  return { users: state.users, userCount: userCount };
 }
 
-
-export default Users
+export default connect(mapStateToProps)(Users)
